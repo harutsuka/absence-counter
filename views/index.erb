@@ -1,1 +1,15 @@
-<h1>Hello, World!</h1>
+<link rel="stylesheet" href="/styles/index.css">
+<button onclick="location.href='/register'">科目を登録</button>
+<div class="subject-list">
+    <% @subject.each do |subject| %>
+    <div class="subject-item">
+        <h3><%= subject.name %></h3>
+        <p>授業回数: <%= subject.class_count %></p>
+        <p>欠席回数: <%= subject.absent_count %></p>
+        <form method="post" action="/record_absence/<%= subject.id %>">
+            <button type="submit">欠席</button>
+        </form>
+    </div>
+    <% end %>
+</div>
+    

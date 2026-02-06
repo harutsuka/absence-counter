@@ -14,3 +14,13 @@ ActiveRecord::Base.establish_connection(db_config)
 # タイムゾーン設定
 Time.zone = 'Tokyo'
 ActiveRecord::Base.default_timezone = :local
+
+class User < ActiveRecord::Base
+  has_secure_password
+end
+
+class Subject < ActiveRecord::Base
+end
+
+class UserSubject < ActiveRecord::Base
+end
