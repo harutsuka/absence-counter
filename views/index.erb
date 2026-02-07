@@ -2,14 +2,21 @@
 <button onclick="location.href='/register'">科目を登録</button>
 <div class="subject-list">
     <% @subject.each do |subject| %>
+    <% max_absences = (subject.class_count * (1- @user.absent_ratio)).round - 1 %>
     <div class="subject-item">
         <h3><%= subject.name %></h3>
-        <p>授業回数: <%= subject.class_count %></p>
-        <p>欠席回数: <%= subject.absent_count %></p>
+        <div class="button-container">
+            <button class="edit-button" id="edit %>">✏️</button>
+        </div>
+        <p>授業回数: <%= subject.class_count %>回</p>
+        <p>欠席できる回数: <%= max_absences %>回</p>
+        <p>現在の欠席回数: <%= subject.absent_count %>回</p>
+        <p>残り: <%= max_absences - subject.absent_count %>回</p>
         <form method="post" action="/record_absence/<%= subject.id %>">
-            <button type="submit">欠席</button>
+            <button type="submit" class="record-absence-button">欠席を記録</button>
         </form>
     </div>
     <% end %>
 </div>
-    
+
+<%= erb :"partials/_edit_form" %>
