@@ -15,6 +15,7 @@ set :port, 4567
 get '/' do
   if session[:user_id]
     @subject = Subject.where(user_id: session[:user_id]).order(:id)
+    @user = User.find(session[:user_id])
     erb :index
   else
     redirect '/login'
@@ -43,11 +44,11 @@ post '/signup' do
   user = User.create(
     email: params[:email],
     password: params[:password],
-    
+    absent_ratio: params[:absent_ratio]
   )
   if user.persisted?
     session[:user_id] = user.id
-    redirect '/login'
+    redirect '/'
   else
     redirect '/signup'
   end
@@ -85,3 +86,8 @@ post '/record_absence/:id' do
   redirect '/'
 end
 
+post '/settings' do
+  user = User.find(session[:user_id])
+  user.update(absent_ratio: params[:absent_ratio])
+  redirect '/settings'
+end
