@@ -13,6 +13,8 @@ gem 'webrick', '~> 1.7'
 gem 'concurrent-ruby', '1.3.4'
 gem 'bigdecimal', '~> 3.1'
 gem 'logger'
+gem 'mutex_m'
+gem 'base64'
 
 group :development do
   gem 'pry'
