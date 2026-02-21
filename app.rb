@@ -91,3 +91,13 @@ post '/settings' do
   user.update(absent_ratio: params[:absent_ratio])
   redirect '/settings'
 end
+
+post '/edit/:id' do
+  subject = Subject.find(params[:id])
+  subject.update(
+    name: params[:subject_name],
+    class_count: params[:class_count],
+    absent_count: params[:absent_count]
+  )
+  redirect '/'
+end
