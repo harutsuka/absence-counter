@@ -59,10 +59,10 @@ get '/logout' do
   redirect '/login'
 end
 
-get '/register' do
+get '/subject-register' do
   erb :register
 end
-post '/register' do
+post '/subject-register' do
   subject = Subject.create(
     name: params[:subject_name],
     class_count: params[:class_count],
