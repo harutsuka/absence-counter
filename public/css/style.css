@@ -1,0 +1,14 @@
+a {
+  text-decoration: none;
+  color: inherit;
+}
+nav li {
+  list-style: none;
+}
+nav li {
+  display: inline-block;
+  margin-right: 10px;
+}
+ul {
+  padding-left: 0;
+}
