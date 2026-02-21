@@ -75,14 +75,15 @@ post '/subject-register' do
   end
 end
 
-get '/settings' do
-  erb :settings
-end
-
 post '/record_absence/:id' do
   subject = Subject.find(params[:id])
   subject.update(absent_count: subject.absent_count+1)
   redirect '/'
+end
+
+get '/settings' do
+  @absent_ratio = User.find(session[:user_id]).absent_ratio
+  erb :settings
 end
 
 post '/settings' do
