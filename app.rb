@@ -43,8 +43,7 @@ end
 post '/signup' do
   user = User.create(
     email: params[:email],
-    password: params[:password],
-    absent_ratio: params[:absent_ratio]
+    password: params[:password]
   )
   if user.persisted?
     session[:user_id] = user.id
