@@ -7,7 +7,9 @@ nav li {
 }
 nav li {
   display: inline-block;
-  margin-right: 10px;
+  margin: 0 8px;
+  font-size: large;
+  font-weight: bold;
 }
 ul {
   padding-left: 0;
