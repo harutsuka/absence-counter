@@ -1,22 +1,23 @@
-<link rel="stylesheet" href="/styles/settings.css">
-<div class="subject-list">
+<link rel="stylesheet" href="/css/settings.css">
+<div class="body">
+<div class="setting-form">
     <h3>設定</h3>
     <form method="post" action="/settings">
     <h4>単位取得に必要な出席基準</h4>
 
     <div class="radio-group">
         <label class="option">
-        <input type="radio" name="absent_ratio" value="0.66" checked>
+        <input type="radio" name="absent_ratio" value="0.666" <%= 'checked' if @absent_ratio == 0.666 %>>
         <span>66%（2/3以上）</span>
         </label>
 
         <label class="option">
-        <input type="radio" name="absent_ratio" value="0.70">
+        <input type="radio" name="absent_ratio" value="0.70" <%= 'checked' if @absent_ratio == 0.70 %>>
         <span>70%</span>
         </label>
 
-        <label class="option">
-        <input type="radio" name="absent_ratio" value="custom">
+        <%# <label class="option">
+        <input type="radio" name="absent_ratio_custom" value="custom">
         <span>カスタマイズ</span>
         </label>
     <input
@@ -25,8 +26,10 @@
         max="100"
         name="absent_ratio_custom"
         placeholder="例: 75"
-    >
-        </div>
+    > %>
+    </div>
 
-  <button type="submit">保存</button>
-</form>
+    <button type="submit" class="button">保存</button>
+    </form>
+</div>
+</div>
