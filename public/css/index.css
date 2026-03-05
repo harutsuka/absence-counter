@@ -19,7 +19,10 @@ h3 {
   height: 36px;
   background-color: #f0f0f0;
   border: 1px solid #888;
-  border-radius: 3px;
+  border-radius: 5px;
+  margin: 2px;
+  padding: 3px 10px;
+  font-weight: bold;
   cursor: pointer;
 }
 .record-absence-button {
@@ -28,7 +31,7 @@ h3 {
   height: 36px;
   background-color: #f0f0f0;
   border: 1px solid #888;
-  border-radius: 6px;
+  border-radius: 5px;
   cursor: pointer;
   font-size: 15px;
 }
@@ -65,4 +68,8 @@ p {
   border: 1px solid #888;
   border-radius: 5px;
   cursor: pointer;
+  margin-bottom: 15px;
+}
+.filter-day-button.selected {
+  background-color: #d0d0d0;
 }
