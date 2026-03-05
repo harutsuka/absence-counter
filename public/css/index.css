@@ -1,16 +1,18 @@
 h3 {
-  margin-top: 0;
+  margin: 0;
 }
 .subject-item {
   border: 1px solid #ccc;
   padding: 18px;
   margin: 10px;
   border-radius: 10px;
-  width: 18%;
+  width: 16%;
   position: relative;
+  font-size: 90%;
 }
 .subject-list {
   display: flex;
+  flex-wrap: wrap;
 }
 .subject-register-button {
   padding: 6px 10px;
