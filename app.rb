@@ -66,7 +66,8 @@ post '/subject-register' do
     name: params[:subject_name],
     class_count: params[:class_count],
     user_id: session[:user_id],
-    absent_count: 0
+    absent_count: 0,
+    day: params[:day]
   )
   if subject.persisted?
     redirect '/'
@@ -97,7 +98,8 @@ post '/edit/:id' do
   subject.update(
     name: params[:subject_name],
     class_count: params[:class_count],
-    absent_count: params[:absent_count]
+    absent_count: params[:absent_count],
+    day: params[:day]
   )
   redirect '/'
 end

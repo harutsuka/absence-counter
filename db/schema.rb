@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2026_02_06_094502) do
+ActiveRecord::Schema.define(version: 2026_03_05_135214) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2026_02_06_094502) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "class_count"
+    t.string "day"
   end
 
   create_table "user_subject", force: :cascade do |t|
@@ -34,9 +35,9 @@ ActiveRecord::Schema.define(version: 2026_02_06_094502) do
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "password_digest"
-    t.float "absent_ratio", default: 0.66
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.float "absent_ratio", default: 0.6666
   end
 
 end
