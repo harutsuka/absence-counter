@@ -15,16 +15,20 @@ h3 {
   flex-wrap: wrap;
 }
 .subject-register-button {
-  padding: 6px 10px;
-  height: 36px;
-  background-color: #f0f0f0;
-  border: 1px solid #888;
-  border-radius: 5px;
-  margin: 2px;
-  padding: 3px 10px;
+  border: 2px dashed #ccc;
+  padding: 18px;
+  margin: 10px;
+  border-radius: 10px;
+  width: 18%;
+  position: relative;
+  font-size: 110%;
+  background-color: transparent;
   font-weight: bold;
-  cursor: pointer;
 }
+.subject-register-button:hover {
+  background-color: #f0f0f0;
+}
+
 .record-absence-button {
   padding: 6px 10px;
   width: 100%;
@@ -58,17 +62,18 @@ p {
   background-color: #f0f0f0;
 }
 
-
+.filter-container {
+  margin: 15px 0;
+}
 .filter-day-button {
   width: 5%;
-  height: 36px;
   margin: 2px;
+  padding: 9px;
+  border-radius: 4px;
   font-weight: bold;
   background-color: #f0f0f0;
   border: 1px solid #888;
-  border-radius: 5px;
   cursor: pointer;
-  margin-bottom: 15px;
 }
 .filter-day-button.selected {
   background-color: #d0d0d0;
