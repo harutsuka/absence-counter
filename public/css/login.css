@@ -1,25 +1,28 @@
-.loginform {
+.login-form {
   border-radius: 10px;
   padding: 4%;
   border: 1px solid #ccc;
   width: 100%;
+  max-width: 600px;
 }
-.body {
-  padding: 3% 30%;
-  margin-top: 30px;
+.page-container {
+  margin-top: 80px;
   display: flex;
-  flex-direction: row;
+  justify-content: center;
+  min-height: 80vh;
+  align-items: flex-start;
 }
-.loginform h1 {
+.login-form h1 {
   border-bottom: #ccc 2px solid;
   margin-top: 0;
 }
 
 input[type="email"],
 input[type="password"] {
-  width: 97%;
+  width: 100%;
+  box-sizing: border-box;
   padding: 8px;
-  height: 30px;
+  height: 36px;
   border: 1px solid #ccc;
   border-radius: 5px;
   margin-bottom: 1rem;

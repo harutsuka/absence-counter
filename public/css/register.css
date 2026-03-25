@@ -1,18 +1,24 @@
+.page-container {
+  display: flex;
+  justify-content: center;
+  padding-top: 80px;
+  min-height: 80vh;
+  align-items: flex-start;
+}
 .register-form {
   border-radius: 10px;
   padding: 4%;
   border: 1px solid #ccc;
   width: 100%;
+  max-width: 600px;
 }
-.body {
-  padding: 3% 30%;
-  margin-top: 30px;
-  display: flex;
-  flex-direction: row;
-}
+
 h2 {
   border-bottom: #ccc 2px solid;
   margin: 0;
+}
+h3 {
+  margin: 1% 0;
 }
 .submit-button {
   width: 100%;
@@ -25,8 +31,9 @@ h2 {
 }
 input[type="text"],
 input[type="number"] {
-  width: 97%;
-  height: 30px;
+  width: 100%;
+  box-sizing: border-box;
+  height: 36px;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 5px;

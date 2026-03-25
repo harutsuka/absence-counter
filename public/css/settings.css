@@ -18,7 +18,7 @@ select {
   border: 1px solid #ccc;
   width: 100%;
 }
-.body {
+.container {
   padding: 3% 30%;
   margin-top: 30px;
   display: flex;
@@ -30,9 +30,11 @@ select {
 }
 .button {
   padding: 6px 10px;
-  height: 30px;
+  height: 36px;
   background-color: #f0f0f0;
   border: 1px solid #888;
   border-radius: 5px;
+  font-weight: bold;
+  font-size: 100%;
   cursor: pointer;
 }

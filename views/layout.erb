@@ -6,17 +6,18 @@
 	<link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-	<header>
-		<nav>
-			<ul>
+	<nav>
+		<ul>
 			<li><a href="/">欠席回数カウンター</a></li>
 			<% if session[:user_id] %>
 				<li><a href="/settings">設定</a></li>
 				<li><a href="/logout">ログアウト</a></li>
 			<% end %>
-			</ul>
-		</nav>
-	</header>
-	<%= yield %>
+		</ul>
+	</nav>
+
+	<main class="page-container">
+		<%= yield %>
+	</main>
 </body>
 </html>

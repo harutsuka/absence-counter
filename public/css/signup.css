@@ -4,7 +4,7 @@
   border: 1px solid #ccc;
   width: 100%;
 }
-.body {
+.container {
   padding: 3% 30%;
   margin-top: 30px;
   display: flex;
@@ -17,8 +17,9 @@
 
 input[type="email"],
 input[type="password"] {
-  width: 97%;
-  height: 30px;
+  width: 100%;
+  box-sizing: border-box;
+  height: 36px;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 5px;
