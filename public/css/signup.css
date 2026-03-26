@@ -22,7 +22,7 @@ input[type="password"] {
   height: 36px;
   padding: 8px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 8px;
   margin-bottom: 1rem;
 }
 button {
@@ -30,7 +30,7 @@ button {
   height: 40px;
   background-color: #f0f0f0;
   border: 1px solid #888;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
 }
 .footer a {
