@@ -1,29 +1,25 @@
 .signup-form {
-  border-radius: 10px;
-  padding: 4%;
-  border: 1px solid #ccc;
   width: 100%;
 }
 .container {
-  padding: 3% 30%;
-  margin-top: 30px;
+  padding: 3% 32%;
+  margin-top: 8vh;
   display: flex;
   flex-direction: row;
 }
 .signup-form h1 {
-  border-bottom: #ccc 2px solid;
-  margin-top: 0;
+  text-align: center;
 }
 
 input[type="email"],
 input[type="password"] {
   width: 100%;
   box-sizing: border-box;
-  height: 36px;
+  height: 40px;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 8px;
-  margin-bottom: 1rem;
+  margin-bottom: 0.3rem;
 }
 button {
   width: 20%;
@@ -35,7 +31,22 @@ button {
   color: #fff;
   font-size: large;
   cursor: pointer;
+  display: block;
+  margin: 0 auto;
 }
 .footer a {
   text-decoration: underline;
+  font-size: 100%;
+  color: var(--main-color);
+}
+svg {
+  width: 24px;
+  height: 24px;
+  transform: translateY(-4px);
+}
+.input-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 1rem;
 }

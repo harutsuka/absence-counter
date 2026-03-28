@@ -1,25 +1,22 @@
 .page-container {
   display: flex;
   justify-content: center;
-  padding-top: 80px;
+  padding-top: 120px;
   min-height: 80vh;
   align-items: flex-start;
 }
 .register-form {
-  border-radius: 10px;
-  padding: 4%;
-  border: 1px solid #ccc;
   width: 100%;
-  max-width: 600px;
+  max-width: 500px;
 }
 
 h2 {
-  border-bottom: #ccc 2px solid;
-  margin: 0;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 20px;
 }
-h3 {
-  margin: 1% 0;
-}
+
 .submit-button {
   width: 20%;
   height: 45px;
@@ -38,7 +35,7 @@ input[type="text"],
 input[type="number"] {
   width: 100%;
   box-sizing: border-box;
-  height: 36px;
+  height: 45px;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -53,7 +50,34 @@ input[type="number"] {
   border-radius: 8px;
   cursor: pointer;
   margin-bottom: 15px;
+  font-weight: bold;
 }
 .day-button.selected {
-  background-color: #d0d0d0;
+  background-color: var(--main-color);
+  color: #fff;
+}
+.day-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+.day-selection {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.input-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 1rem;
+  margin-bottom: 0;
+}
+.input-group svg {
+  transform: translateY(-8px);
+}
+svg {
+  width: 24px;
+  height: 24px;
 }

@@ -13,21 +13,13 @@ select {
   border-radius: 8px;
 }
 .setting-form {
-  border-radius: 10px;
-  padding: 4%;
-  border: 1px solid #ccc;
   width: 100%;
-  box-shadow: var(--box-shadow);
 }
 .container {
   padding: 3% 30%;
   margin-top: 30px;
   display: flex;
   flex-direction: row;
-}
-.setting-form h3 {
-  border-bottom: #ccc 2px solid;
-  margin-top: 0;
 }
 .button {
   padding: 6px 10px;
@@ -39,16 +31,7 @@ select {
   font-size: 100%;
   cursor: pointer;
 }
-.day-buttons button {
-  width: 14%;
-  height: 36px;
-  margin: 2px;
-  background-color: #f0f0f0;
-  border: 1px solid #888;
-  border-radius: 8px;
-  cursor: pointer;
-  margin-bottom: 15px;
-}
-.day-button.selected {
-  background-color: #d0d0d0;
+.day-buttons {
+  display: flex;
+  margin-bottom: 10px;
 }
