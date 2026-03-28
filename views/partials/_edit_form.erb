@@ -1,38 +1,105 @@
-<div id="edit-form-<%= subject.id %>" class="modal">
-    <div class="modal-container">
-        <div class="modal-content">
-            <form id="edit-form-<%= subject.id %>" action="/edit/<%= subject.id %>" method="post" enctype="multipart/form-data">
-                <h3>科目情報を編集</h3>
-                <span class="close-button" id="closeModal">&times;</span>
-                <label for="subject_name">科目名:</label>
-                <input type="text" id="subject_name" name="subject_name" value="<%= subject.name %>" required>
-                
-                <label for="class_count">授業回数:</label>
-                <input type="number" id="class_count" name="class_count" min="1" value="<%= subject.class_count %>" required>
-                <label for="absent_count">現在の欠席回数:</label>
-                <input type="number" id="absent_count" name="absent_count" min="0" value="<%= subject.absent_count %>" required>
-                <button type="submit">保存</button>
-            </form>
+<div id="edit-modal" class="modal">
+  <div class="modal-container">
+    <div class="modal-content">
+      <form id="edit-form" method="post">
+        <h2>科目情報を編集</h2>
+        <span class="close-button">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="#ffffff" viewBox="0 0 24 24" stroke-width="2.0" stroke="currentColor" width="12" height="12">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" stroke="#ffffff"/>
+          </svg>
+        </span>
+
+        <div class="modal-body">
+        <div class="label-group">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="20" height="20">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+          </svg>
+          <label>科目名</label>
         </div>
+          <input type="text" id="subject_name" name="subject_name" required>
+
+        <div class="label-group">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="20" height="20">>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.242 5.992h12m-12 6.003H20.24m-12 5.999h12M4.117 7.495v-3.75H2.99m1.125 3.75H2.99m1.125 0H5.24m-1.92 2.577a1.125 1.125 0 1 1 1.591 1.59l-1.83 1.83h2.16M2.99 15.745h1.125a1.125 1.125 0 0 1 0 2.25H3.74m0-.002h.375a1.125 1.125 0 0 1 0 2.25H2.99" />
+          </svg>
+          <label>授業回数</label>
+        </div>
+        <input type="number" id="class_count" name="class_count" min="1" required>
+
+        <div class="label-group">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="20" height="20">>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+          </svg>
+          <label>現在の欠席回数</label>
+        </div>
+        <input type="number" id="absent_count" name="absent_count" min="0" required>
+
+        <label>曜日</label>
+        <div class="day-buttons">
+          <button type="button" class="day-button" data-day="Monday">月</button>
+          <button type="button" class="day-button" data-day="Tuesday">火</button>
+          <button type="button" class="day-button" data-day="Wednesday">水</button>
+          <button type="button" class="day-button" data-day="Thursday">木</button>
+          <button type="button" class="day-button" data-day="Friday">金</button>
+          <button type="button" class="day-button" data-day="Saturday">土</button>
+          <input type="hidden" name="day" id="day-input">
+        </div>
+        <button type="submit" class="save-button">保存</button>
+      </div>
+      </form>
     </div>
+  </div>
 </div>
- <script>
-document.querySelectorAll('.edit-button').forEach(button => {
-  button.addEventListener('click', () => {
+
+<script>
+  const modal = document.getElementById("edit-modal")
+  const form = document.getElementById("edit-form")
+  const dayInput = document.getElementById("day-input")
+  const dayButtons = document.querySelectorAll("#edit-modal .day-button")
+
+/* モーダルを開く */
+document.querySelectorAll(".edit-button").forEach(button => {
+  button.addEventListener("click", () => {
+
     const id = button.dataset.id
-    document.getElementById(`edit-form-${id}`).style.display = 'block'
+
+    form.action = `/edit/${id}`
+
+    document.getElementById("subject_name").value = button.dataset.name
+    document.getElementById("class_count").value = button.dataset.class
+    document.getElementById("absent_count").value = button.dataset.absent
+
+    /* 既存曜日を反映 */
+    dayButtons.forEach(btn => btn.classList.remove("selected"))
+    if (button.dataset.day) {
+      const days = button.dataset.day.split(",")
+      days.forEach(day => {
+        const target = document.querySelector(`#edit-modal .day-button[data-day="${day}"]`)
+        if (target) target.classList.add("selected")
+      })
+      dayInput.value = button.dataset.day
+    }
+    modal.style.display = "block"
   })
 })
 
-document.querySelectorAll('.close-button').forEach(button => {
-  button.addEventListener('click', () => {
-    button.closest('.modal').style.display = 'none'
-  })
+document.querySelector(".close-button").addEventListener("click", () => {
+  modal.style.display = "none"
 })
-
-window.addEventListener('click', e => {
-  if (e.target.classList.contains('modal')) {
-    e.target.style.display = 'none'
+window.addEventListener("click", e => {
+  if (e.target === modal) {
+    modal.style.display = "none"
   }
+})
+
+/* 曜日選択*/
+dayButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    button.classList.toggle("selected")
+    const selected = Array.from(dayButtons)
+      .filter(btn => btn.classList.contains("selected"))
+      .map(btn => btn.dataset.day)
+    dayInput.value = selected.join(",")
+  })
 })
 </script>
