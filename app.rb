@@ -12,9 +12,22 @@ set :views, File.join(settings.root, 'views')
 set :bind, '0.0.0.0'
 set :port, 4567
 
+DAY_JP = {
+  "Monday" => "月曜日",
+  "Tuesday" => "火曜日",
+  "Wednesday" => "水曜日",
+  "Thursday" => "木曜日",
+  "Friday" => "金曜日",
+  "Saturday" => "土曜日",
+}
+
 get '/' do
   if session[:user_id]
-    @subject = Subject.where(user_id: session[:user_id]).order(:id)
+    if params[:day]
+      @subject = Subject.where("day LIKE ? ", "%#{params[:day]}%").where(user_id: session[:user_id]).order(:id)
+    else
+      @subject = Subject.where(user_id: session[:user_id]).order(:id)
+    end
     @user = User.find(session[:user_id])
     erb :index
   else
