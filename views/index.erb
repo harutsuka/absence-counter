@@ -1,23 +1,112 @@
 <link rel="stylesheet" href="/css/index.css">
-<button onclick="location.href='/subject-register'" class="subject-register-button">科目を登録</button>
+<link rel="stylesheet" href="/css/edit_form.css">
+
+<script src="https://cdn.jsdelivr.net/npm/progressbar.js"></script>
+
+
+<div class="filter-container">
+    <a href="/?day=" class="filter-day-button <%= 'selected' if params[:day].nil? || params[:day] == '' %>" data-day="">すべて</a>
+    <a href="/?day=Monday" class="filter-day-button <%= 'selected' if params[:day] == 'Monday' %>" data-day="Monday">月曜日</a>
+    <a href="/?day=Tuesday" class="filter-day-button <%= 'selected' if params[:day] == 'Tuesday' %>" data-day="Tuesday">火曜日</a>
+    <a href="/?day=Wednesday" class="filter-day-button <%= 'selected' if params[:day] == 'Wednesday' %>" data-day="Wednesday">水曜日</a>
+    <a href="/?day=Thursday" class="filter-day-button <%= 'selected' if params[:day] == 'Thursday' %>" data-day="Thursday">木曜日</a>
+    <a href="/?day=Friday" class="filter-day-button <%= 'selected' if params[:day] == 'Friday' %>" data-day="Friday">金曜日</a>
+    <a href="/?day=Saturday" class="filter-day-button <%= 'selected' if params[:day] == 'Saturday' %>" data-day="Saturday">土曜日</a>
+</div>
+
 <div class="subject-list">
     <% @subject.each do |subject| %>
     <% max_absences = (subject.class_count * (1- @user.absent_ratio)).round - 1 %>
-    <div class="subject-item">
+
+    <div class="subject-item" data-day="<%= subject.day %>">
         <h3><%= subject.name %></h3>
-        <div class="button-container">
-            <button class="edit-button" data-id="<%= subject.id %>">✏️</button>
+        <div class="days">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="20" height="20">
+                <path d="M5.25 12a.75.75 0 0 1 .75-.75h.01a.75.75 0 0 1 .75.75v.01a.75.75 0 0 1-.75.75H6a.75.75 0 0 1-.75-.75V12ZM6 13.25a.75.75 0 0 0-.75.75v.01c0 .414.336.75.75.75h.01a.75.75 0 0 0 .75-.75V14a.75.75 0 0 0-.75-.75H6ZM7.25 12a.75.75 0 0 1 .75-.75h.01a.75.75 0 0 1 .75.75v.01a.75.75 0 0 1-.75.75H8a.75.75 0 0 1-.75-.75V12ZM8 13.25a.75.75 0 0 0-.75.75v.01c0 .414.336.75.75.75h.01a.75.75 0 0 0 .75-.75V14a.75.75 0 0 0-.75-.75H8ZM9.25 10a.75.75 0 0 1 .75-.75h.01a.75.75 0 0 1 .75.75v.01a.75.75 0 0 1-.75.75H10a.75.75 0 0 1-.75-.75V10ZM10 11.25a.75.75 0 0 0-.75.75v.01c0 .414.336.75.75.75h.01a.75.75 0 0 0 .75-.75V12a.75.75 0 0 0-.75-.75H10ZM9.25 14a.75.75 0 0 1 .75-.75h.01a.75.75 0 0 1 .75.75v.01a.75.75 0 0 1-.75.75H10a.75.75 0 0 1-.75-.75V14ZM12 9.25a.75.75 0 0 0-.75.75v.01c0 .414.336.75.75.75h.01a.75.75 0 0 0 .75-.75V10a.75.75 0 0 0-.75-.75H12ZM11.25 12a.75.75 0 0 1 .75-.75h.01a.75.75 0 0 1 .75.75v.01a.75.75 0 0 1-.75.75H12a.75.75 0 0 1-.75-.75V12ZM12 13.25a.75.75 0 0 0-.75.75v.01c0 .414.336.75.75.75h.01a.75.75 0 0 0 .75-.75V14a.75.75 0 0 0-.75-.75H12ZM13.25 10a.75.75 0 0 1 .75-.75h.01a.75.75 0 0 1 .75.75v.01a.75.75 0 0 1-.75.75H14a.75.75 0 0 1-.75-.75V10ZM14 11.25a.75.75 0 0 0-.75.75v.01c0 .414.336.75.75.75h.01a.75.75 0 0 0 .75-.75V12a.75.75 0 0 0-.75-.75H14Z" />
+                <path fill-rule="evenodd" d="M5.75 2a.75.75 0 0 1 .75.75V4h7V2.75a.75.75 0 0 1 1.5 0V4h.25A2.75 2.75 0 0 1 18 6.75v8.5A2.75 2.75 0 0 1 15.25 18H4.75A2.75 2.75 0 0 1 2 15.25v-8.5A2.75 2.75 0 0 1 4.75 4H5V2.75A.75.75 0 0 1 5.75 2Zm-1 5.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h10.5c.69 0 1.25-.56 1.25-1.25v-6.5c0-.69-.56-1.25-1.25-1.25H4.75Z" clip-rule="evenodd" />
+            </svg>
+
+            <md-chip-set>
+                <% subject.day.split(',').each do |day| %>
+                    <md-suggestion-chip label="<%= DAY_JP[day] %>"></md-suggestion-chip>
+                <% end %>
+            </md-chip-set>
         </div>
-        <p>授業回数: <%= subject.class_count %>回</p>
-        <p>欠席できる回数: <%= max_absences %>回</p>
-        <p>現在の欠席回数: <%= subject.absent_count %>回</p>
-        <p>残り: <%= max_absences - subject.absent_count %>回</p>
+
+        <div class="button-container">
+            <button
+                class="edit-button"
+                data-id="<%= subject.id %>" 
+                data-name="<%= subject.name %>"
+                data-class="<%= subject.class_count %>"
+                data-absent="<%= subject.absent_count %>"
+                data-day="<%= subject.day %>">
+                <%# <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />
+                </svg> %>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+                </svg>
+            </button>
+        </div>
+        <div class="attendance">
+            <p>欠席: </p>
+            <h3><%= subject.absent_count %></h3><p>/ <%= max_absences %>回</p>
+        </div>
+
+        <% @progress = subject.absent_count.to_f / max_absences %>
+        <div class="progress-bar" data-progress="<%= @progress %>"></div>
+        <div class="remaining-absence">
+        <p>残り: <h3><%= max_absences - subject.absent_count %></h3>回</p>
+        </div>
+        
         <form method="post" action="/record_absence/<%= subject.id %>">
+            <% if subject.absent_count < max_absences %>
             <button type="submit" class="record-absence-button">欠席を記録</button>
+            <% else%>
+            <button type="button" class="record-absence-button limit-reached-button" disabled>上限に達しました</button>
+            <% end %>
         </form>
     </div>
-    <%= erb :"partials/_edit_form", locals: { subject: subject } %>
-
     <% end %>
+
+    <button onclick="location.href='/subject-register'" class="subject-register-button">+ 新しい科目を登録</button>
+
+    <%= erb :"partials/_edit_form" %>
 </div>
 
+<script>
+    const filterButtons = document.querySelectorAll('.filter-day-button')
+    filterButtons.forEach(button =>{
+        button.addEventListener('click',()=>{
+            const day = button.dataset.day
+            document.querySelectorAll('.subject-item').forEach(item =>{
+                if(!day || item.dataset.day.includes(day)){
+                    item.style.display = 'block'
+                }else{
+                    item.style.display = 'none'
+                }
+            })
+        filterButtons.forEach(btn => btn.classList.remove('selected'))
+        button.classList.add('selected')
+        })
+    })
+
+    document.querySelectorAll('.progress-bar').forEach(container =>{
+        const progress = parseFloat(container.dataset.progress)
+        var bar = new ProgressBar.Line(container, {
+        strokeWidth: 4,
+        color: '#FFEA82',
+        trailColor: '#eee',
+        trailWidth: 1,
+        svgStyle: {width: '100%', height: '100%'},
+        from: {color: '#FFEA82'},
+        to: {color: '#f5595e'},
+        step: (state, bar) => {
+            bar.path.setAttribute('stroke', state.color);
+        }
+    });
+        bar.animate(progress);
+    })
+    
+</script>
