@@ -4,7 +4,6 @@
     <h3>設定</h3>
     <form method="post" action="/settings">
     <h4>単位取得に必要な出席基準</h4>
-
     <div class="radio-group">
         <label class="option">
         <input type="radio" name="absent_ratio" value="0.666" <%= 'checked' if @absent_ratio == 0.666 %>>
@@ -29,6 +28,14 @@
     > %>
     </div>
 
+    <h4>曜日の表示</h4>
+    <div class="day-buttons">
+        <label class="option">
+        <input type="checkbox" name="display_days" value="Saturday" <%= 'checked' if @display_days&.include?('Saturday') %>>
+        <span>土曜日を表示する</span>
+        </label>
+    </div>
+    
     <button type="submit" class="button">保存</button>
     </form>
 </div>
