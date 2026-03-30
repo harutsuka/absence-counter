@@ -3,11 +3,10 @@
   max-width: 500px;
 }
 .page-container {
-  margin-top: 12vh;
+  padding: 3% 32%;
+  margin-top: 8vh;
   display: flex;
-  justify-content: center;
-  min-height: 80vh;
-  align-items: flex-start;
+  flex-direction: row;
 }
 h1 {
   text-align: center;
