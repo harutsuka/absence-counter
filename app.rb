@@ -116,3 +116,8 @@ post '/edit/:id' do
   )
   redirect '/'
 end
+get '/delete/:id' do
+  subject = Subject.find(params[:id])
+  subject.destroy
+  redirect '/'
+end
