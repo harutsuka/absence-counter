@@ -62,7 +62,7 @@ nav ul {
 }
 .bottom-menu svg {
   display: block;
-  transform: translateY(1px);
+  transform: translateY(4px);
   margin-right: 5px;
 }
 main {
