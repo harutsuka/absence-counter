@@ -1,52 +1,54 @@
-.signup-form {
-  width: 100%;
+.page-container {
+  display: flex;
+  justify-content: center;
+  padding: 3% 0;
 }
 .container {
-  padding: 3% 32%;
-  margin-top: 8vh;
-  display: flex;
-  flex-direction: row;
+  width: 100%;
+  max-width: 500px;
 }
-.signup-form h1 {
+.auth-form h1 {
   text-align: center;
 }
 
-input[type="email"],
-input[type="password"] {
-  width: 100%;
-  box-sizing: border-box;
-  height: 40px;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  margin-bottom: 0.3rem;
-}
-button {
-  width: 20%;
-  height: 45px;
-  background-color: var(--main-color);
-  border: none;
-  border-radius: 25px;
-  font-weight: bold;
-  color: #fff;
-  font-size: large;
-  cursor: pointer;
-  display: block;
-  margin: 0 auto;
-}
-.footer a {
-  text-decoration: underline;
-  font-size: 100%;
-  color: var(--main-color);
-}
-svg {
-  width: 24px;
-  height: 24px;
-  transform: translateY(-4px);
-}
 .input-group {
   display: flex;
   align-items: center;
   gap: 8px;
   margin-bottom: 1rem;
+}
+
+input {
+  width: 100%;
+  height: 40px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+button {
+  width: 30%;
+  height: 45px;
+  background-color: var(--main-color);
+  border: none;
+  border-radius: 25px;
+  color: #fff;
+  font-weight: bold;
+  font-size: large;
+  display: block;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+.footer {
+  text-align: center;
+}
+.footer a {
+  text-decoration: underline;
+  color: var(--main-color);
+}
+
+svg {
+  width: 24px;
+  height: 24px;
 }
