@@ -4,6 +4,7 @@
   --button-color: #ccc;
   --background-color: #f1f5f9;
   --main-color: oklch(70.7% 0.165 254.624);
+  --sub-color: oklch(80.9% 0.105 251.813);
 }
 a {
   text-decoration: none;
@@ -43,10 +44,6 @@ nav li .title {
 .nav-items a {
   line-height: 1;
 }
-.nav-items svg {
-  display: block;
-  transform: translateY(4.5px);
-}
 nav ul {
   display: flex;
   flex-direction: column;
@@ -62,8 +59,9 @@ nav ul {
 }
 .bottom-menu svg {
   display: block;
-  transform: translateY(4px);
   margin-right: 5px;
+  width: 25px;
+  height: 25px;
 }
 main {
   width: 85%;
