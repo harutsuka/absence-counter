@@ -24,9 +24,9 @@ DAY_JP = {
 get '/' do
   if session[:user_id]
     if params[:day]
-      @subject = Subject.where("day LIKE ? ", "%#{params[:day]}%").where(user_id: session[:user_id]).order(:id)
+      @subject = Subject.where("day LIKE ? ", "%#{params[:day]}%").where(user_id: session[:user_id], archived: false).order(:id)
     else
-      @subject = Subject.where(user_id: session[:user_id]).order(:id)
+      @subject = Subject.where(user_id: session[:user_id], archived: false).order(:id)
     end
     @user = User.find(session[:user_id])
     erb :index
@@ -120,4 +120,29 @@ get '/delete/:id' do
   subject = Subject.find(params[:id])
   subject.destroy
   redirect '/'
+end
+get '/archive/:id' do
+  subject = Subject.find(params[:id])
+  # subject.update(archived: true)
+
+  result = subject.update(archived: true)
+  puts result
+  puts subject.errors.full_messages
+  puts subject.archived
+
+  redirect '/'
+end
+get '/archived' do
+  if session[:user_id]
+    @archived_subjects = Subject.where(user_id: session[:user_id], archived: true).order(:id)
+    @user = User.find(session[:user_id])
+    erb :archived
+  else
+    redirect '/login'
+  end
+end
+get '/unarchive/:id' do
+  subject = Subject.find(params[:id])
+  subject.update(archived: false)
+  redirect '/archived'
 end

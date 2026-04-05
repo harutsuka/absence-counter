@@ -3,19 +3,9 @@
 
 <script src="https://cdn.jsdelivr.net/npm/progressbar.js"></script>
 
-
-<div class="filter-container">
-    <a href="/?day=" class="filter-day-button <%= 'selected' if params[:day].nil? || params[:day] == '' %>" data-day="">すべて</a>
-    <a href="/?day=Monday" class="filter-day-button <%= 'selected' if params[:day] == 'Monday' %>" data-day="Monday">月曜日</a>
-    <a href="/?day=Tuesday" class="filter-day-button <%= 'selected' if params[:day] == 'Tuesday' %>" data-day="Tuesday">火曜日</a>
-    <a href="/?day=Wednesday" class="filter-day-button <%= 'selected' if params[:day] == 'Wednesday' %>" data-day="Wednesday">水曜日</a>
-    <a href="/?day=Thursday" class="filter-day-button <%= 'selected' if params[:day] == 'Thursday' %>" data-day="Thursday">木曜日</a>
-    <a href="/?day=Friday" class="filter-day-button <%= 'selected' if params[:day] == 'Friday' %>" data-day="Friday">金曜日</a>
-    <a href="/?day=Saturday" class="filter-day-button <%= 'selected' if params[:day] == 'Saturday' %>" data-day="Saturday">土曜日</a>
-</div>
-
+<h2>アーカイブした科目</h2>
 <div class="subject-list">
-    <% @subject.each do |subject| %>
+    <% @archived_subjects.each do |subject| %>
     <% max_absences = (subject.class_count * (1- @user.absent_ratio)).round - 1 %>
 
     <div class="subject-item" data-day="<%= subject.day %>">
@@ -43,32 +33,17 @@
             <div class="click-menu">
                 <div class="button-container">
                     <button
-                        class="edit-button"
-                        data-id="<%= subject.id %>" 
-                        data-name="<%= subject.name %>"
-                        data-class="<%= subject.class_count %>"
-                        data-absent="<%= subject.absent_count %>"
-                        data-day="<%= subject.day %>">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
-                        </svg>
-                        <span>編集</span>
-                    </button>
-                </div>
-                
-                <div class="button-container">
-                    <button
-                        onclick="location.href='/archive/<%= subject.id %>'"
-                        class="archive-button"
+                        onclick="location.href='/unarchive/<%= subject.id %>'"
+                        class="unarchive-button"
                         data-id="<%= subject.id %>" 
                         data-name="<%= subject.name %>"
                         data-class="<%= subject.class_count %>"
                         data-absent="<%= subject.absent_count %>"
                         data-day="<%= subject.day %>">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="m20.25 7.5-.625 10.632a2.25 2.25 0 0 1-2.247 2.118H6.622a2.25 2.25 0 0 1-2.247-2.118L3.75 7.5m8.25 3v6.75m0 0-3-3m3 3 3-3M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
                         </svg>
-                        <span>アーカイブ</span>
+                        <span>復元</span>
                     </button>
                 </div>
 
@@ -102,18 +77,11 @@
         </div>
         
         <form method="post" action="/record_absence/<%= subject.id %>">
-            <% if subject.absent_count < max_absences %>
-            <button type="submit" class="record-absence-button">欠席を記録</button>
-            <% else%>
-            <button type="button" class="record-absence-button limit-reached-button" disabled>上限に達しました</button>
-            <% end %>
+            <button type="button" class="record-absence-button limit-reached-button" disabled>欠席を記録</button>
         </form>
     </div>
     <% end %>
 
-    <button onclick="location.href='/subject-register'" class="subject-register-button">+ 新しい科目を登録</button>
-
-    <%= erb :"partials/_edit_form" %>
 </div>
 
 <script>
