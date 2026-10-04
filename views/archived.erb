@@ -5,6 +5,9 @@
 
 <h2>アーカイブした科目</h2>
 <div class="subject-list">
+    <% if @archived_subjects.empty? %>
+    <p>アーカイブされた科目はありません</p>
+    <% else %>
     <% @archived_subjects.each do |subject| %>
     <% max_absences = (subject.class_count * (1- @user.absent_ratio)).round - 1 %>
 
@@ -81,7 +84,7 @@
         </form>
     </div>
     <% end %>
-
+<% end %>
 </div>
 
 <script>
