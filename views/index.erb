@@ -16,7 +16,7 @@
 
 <div class="subject-list">
     <% @subject.each do |subject| %>
-    <% max_absences = (subject.class_count * (1- @user.absent_ratio)).round - 1 %>
+    <% max_absences = (subject.class_count * (1- @user.absent_ratio)).round %>
 
     <div class="subject-item" data-day="<%= subject.day %>">
         <h3><%= subject.name %></h3>
